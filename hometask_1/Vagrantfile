@@ -1,0 +1,24 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.define "hometask_1-centos" do |centos|
+    centos.vm.box = "centos/7"
+
+    centos.vm.network "forwarded_port", guest: 22, host: 2222
+  end
+
+
+  config.vm.define "hometask_1-ubuntu" do |ubuntu|
+    ubuntu.vm.box = "ubuntu/bionic64"
+
+    ubuntu.vm.network "forwarded_port", guest: 80, host: 8080
+
+    ubuntu.vm.provision "shell", inline: <<-SHELL
+      apt-get update
+      apt-get install -y apache2
+    SHELL
+  end
+
+end
+
