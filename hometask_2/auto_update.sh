@@ -7,4 +7,4 @@ name=`date +"%Y%m%d"`
 
 sudo touch update-$name.log
 
- echo $update > update-$name.log
+echo $update > update-$name.log
